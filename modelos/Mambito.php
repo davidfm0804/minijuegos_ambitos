@@ -17,8 +17,9 @@ class Mambito {
     public function mInsertarAmbitos($ambitos) {
         $sql = $this->conexion->prepare("INSERT INTO ambito(nombre) VALUES (?)");
         $sql->bind_param("s", $nombre);
-
-        foreach($ambitos as $nombre){
+    
+        for ($i = 0; $i < count($ambitos); $i++) {
+            $nombre = $ambitos[$i];
             try {
                 $sql->execute();
             } catch (mysqli_sql_exception $e) {
@@ -28,5 +29,6 @@ class Mambito {
             }
         }
     }
+    
 }
 ?>

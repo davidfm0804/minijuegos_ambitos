@@ -12,7 +12,7 @@ class Cambito {
         if($resultado==="Csu"){
             return "Ambito o ambitos duplicados";
         }else{
-            return "Consulta bien realizada";
+            return "Insercion exitosa";
         }
     }
 }
