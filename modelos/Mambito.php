@@ -17,18 +17,23 @@ class Mambito {
     public function mInsertarAmbitos($ambitos) {
         $sql = $this->conexion->prepare("INSERT INTO ambito(nombre) VALUES (?)");
         $sql->bind_param("s", $nombre);
-    
+        $sw=0;
         for ($i = 0; $i < count($ambitos); $i++) {
             $nombre = $ambitos[$i];
             try {
                 $sql->execute();
             } catch (mysqli_sql_exception $e) {
                 if ($e->getCode() == 1062) {
-                    return 'Csu';
+                    $error[]=$nombre;
+                    $sw=1;
                 }
             }
         }
+        if($sw==1){
+            return $error;
+        }else{
+            return $sw;
+        }
     }
-    
 }
 ?>

@@ -9,10 +9,11 @@ class Cambito {
 
     public function cInsertarAmbitos($ambitos) {
         $resultado=$this->objambito->mInsertarAmbitos($ambitos);
-        if($resultado==="Csu"){
-            return "Ambito o ambitos duplicados";
+        if($resultado==0){
+            return "Insercion Exitosa";
         }else{
-            return "Insercion exitosa";
+            $cadena=implode(", ", $resultado);
+            return "Estos ambitos ya existian ".$cadena." los demas fueron insertados.";
         }
     }
 }
